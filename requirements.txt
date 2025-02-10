@@ -1,5 +1,5 @@
 Flask
-Flask-WTF
+Flask-WTF==0.14
 Flask-SQLAlchemy
 psycopg2-binary
 gunicorn
