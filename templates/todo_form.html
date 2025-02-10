@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block title %}Todo作成・編集{% endblock %}
+{% block content %}
+  <h2>{% if form.id.data %}Todo編集{% else %}Todo作成{% endif %}</h2>
+  <form method="post">
+    {{ form.hidden_tag() }}
+    <div>
+      {{ form.title.label }}<br>
+      {{ form.title(size=40) }}
+    </div>
+    <div>
+      {{ form.description.label }}<br>
+      {{ form.description(rows=4, cols=40) }}
+    </div>
+    <div>
+      {{ form.due_date.label }}<br>
+      {{ form.due_date() }}
+    </div>
+    <div>
+      {{ form.tag.label }}<br>
+      {{ form.tag(size=30) }}
+    </div>
+    <div>
+      {{ form.directory_id.label }}<br>
+      {{ form.directory_id() }}
+    </div>
+    <div>
+      <button type="submit">保存</button>
+    </div>
+  </form>
+{% endblock %}
