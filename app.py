@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from config import Config
 from models import db, Todo, Directory
 from flask_wtf import FlaskForm
+from flask_wtf.csrf import CsrfProtect
 from wtforms import StringField, TextAreaField, DateTimeField, BooleanField, SelectField, HiddenField
 from wtforms.validators import DataRequired
 from datetime import datetime
@@ -9,6 +10,7 @@ from datetime import datetime
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
+CsrfProtect(app)
 
 class TodoForm(FlaskForm):
     id = HiddenField('ID')
