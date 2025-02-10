@@ -22,6 +22,11 @@ class DirectoryForm(FlaskForm):
     id = HiddenField('ID')
     name = StringField('ディレクトリ名', validators=[DataRequired()])
 
+
+@app.before_first_request
+def initialize_database():
+    db.create_all()
+
 @app.route('/')
 def index():
     status = request.args.get('status', 'all')
@@ -128,7 +133,6 @@ def delete_directory(dir_id):
 @app.cli.command('init-db')
 def init_db():
     db.create_all()
-    print("データベースが初期化されました。")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
