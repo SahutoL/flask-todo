@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block title %}ディレクトリ管理{% endblock %}
+{% block content %}
+  <h2>ディレクトリ作成・編集</h2>
+  <form method="post">
+    {{ form.hidden_tag() }}
+    <div>
+      {{ form.name.label }}<br>
+      {{ form.name(size=30) }}
+    </div>
+    <div>
+      <button type="submit">保存</button>
+    </div>
+  </form>
+  <hr>
+  <h3>既存のディレクトリ</h3>
+  {% if directories %}
+    <ul>
+      {% for d in directories %}
+        <li>
+          {{ d.name }}
+          <a href="{{ url_for('directory') }}?edit={{ d.id }}">編集</a>
+          <form action="{{ url_for('delete_directory', dir_id=d.id) }}" method="post" style="display:inline;">
+            {{ csrf_field() }}
+            <button type="submit">削除</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>ディレクトリはありません。</p>
+  {% endif %}
+{% endblock %}
