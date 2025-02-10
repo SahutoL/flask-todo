@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from config import Config
 from models import db, Todo, Directory
-from flask_wtf import FlaskForm
-from flask_wtf.csrf import CsrfProtect
+from flask_wtf import FlaskForm, CsrfProtect
 from wtforms import StringField, TextAreaField, DateTimeField, BooleanField, SelectField, HiddenField
 from wtforms.validators import DataRequired
 from datetime import datetime
